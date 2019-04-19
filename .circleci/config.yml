@@ -34,9 +34,23 @@ jobs:
           paths:
             - node_modules
           key: node-v2019004201-{{ .Branch }}-{{ checksum "package-lock.json" }}
+
   test:
-    - run:
-        command: npm test
+    <<: *container
+    steps:
+
+      # githubからのチェックアウト
+      - checkout
+
+      # キャッシュの読み込み：node_modules配下をキャッシュする
+      - restore_cache:
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - node-v2019004201-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - node-v2019004201-{{ .Branch }}-
+            - node-v2019004201-
+      - run:
+          command: npm test
 
 #   Chromeが動かないため一旦解除する
 #  e2e-client:

@@ -13,7 +13,7 @@ resource "google_compute_firewall" "allow-ssh" {
     ports    = ["22"]
   }
   # source_tags = [""]
-  target_tags = ["${var.mytags["system"]}"]
+  # target_tags = ["${var.mytags["system"]}"]
 }
 
 # instances
@@ -23,7 +23,7 @@ resource "google_compute_instance" "node1" {
   zone         = "asia-northeast1-c" 
 
   description  = "managed by terraform"
-  tags         = ["${var.mytags["system"]}"]
+  # tags         = ["${var.mytags["system"]}"]
 
   labels {
     system = "${var.mytags["system"]}"

@@ -52,47 +52,11 @@ jobs:
       - run:
           command: npm test
 
-#   Chromeが動かないため一旦解除する
-#  e2e-client:
-#    <<: *container
-#    steps:
-#
-#      # githubからのチェックアウト
-#      - checkout
-#
-#      # キャッシュの読み込み：node_modules配下をキャッシュする
-#      - restore_cache:
-#          keys:
-#            # when lock file changes, use increasingly general patterns to restore cache
-#            - node-v2019032901-{{ .Branch }}-{{ checksum "package-lock.json" }}
-#            - node-v2019032901-{{ .Branch }}-
-#            - node-v2019032901-
-#
-#      # mockServer起動
-#      - run:
-#          command: npm run mock-client
-#          background: true
-#
-#      - run:
-#          name: waiting....
-#          command: sleep 30
-#
-#      # e2e(client) 実行
-#      - run:
-#          command: npm run e2e-client-ci
-
 workflows:
   version: 2
-  ut-liberaworks-web:
+  ut-k8s-demo:
     jobs:
       - build
       - test
-#  e2e-liberaworks-web:
-#    jobs:
-#      - build
-#      - e2e-customer:
-#          requires:
-#            - build
-#      - e2e-client:
-#          requires:
-#            - build
+        requires:
+          - build

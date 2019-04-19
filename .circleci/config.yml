@@ -34,6 +34,9 @@ jobs:
           paths:
             - node_modules
           key: node-v2019004201-{{ .Branch }}-{{ checksum "package-lock.json" }}
+  test:
+    - run:
+        command: npm test
 
 #   Chromeが動かないため一旦解除する
 #  e2e-client:
@@ -69,6 +72,7 @@ workflows:
   ut-liberaworks-web:
     jobs:
       - build
+      - test
 #  e2e-liberaworks-web:
 #    jobs:
 #      - build

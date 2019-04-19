@@ -57,6 +57,6 @@ workflows:
   ut-k8s-demo:
     jobs:
       - build
-      - test
+      - test:
         requires:
           - build

@@ -1,3 +1,20 @@
+# fireWall
+resource "google_compute_firewall" "allow-ssh" {
+  name    = "allow-ssh"
+  network = "${google_compute_network.nw.name}"
+  description = "managed by terraform"
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+  # source_tags = [""]
+  # target_tags = ["${var.mytags["system"]}"]
+}
 
 # instances
 resource "google_compute_instance" "node1" {
@@ -8,9 +25,9 @@ resource "google_compute_instance" "node1" {
   description  = "managed by terraform"
   # tags         = ["${var.mytags["system"]}"]
 
-//  labels {
-//    system = "${var.mytags["system"]}"
-//  }
+  labels {
+    system = "${var.mytags["system"]}"
+  }
 
   boot_disk {
     initialize_params {

@@ -17,7 +17,7 @@ resource "google_compute_firewall" "allow-ssh" {
 }
 
 resource "google_compute_firewall" "allow-test" {
-  name    = "allow-ssh"
+  name    = "allow-test"
   network = "${google_compute_network.nw.name}"
   description = "managed by terraform"
 

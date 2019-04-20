@@ -16,6 +16,19 @@ resource "google_compute_firewall" "allow-ssh" {
   # target_tags = ["${var.mytags["system"]}"]
 }
 
+resource "google_compute_firewall" "allow-test" {
+  name    = "allow-ssh"
+  network = "${google_compute_network.nw.name}"
+  description = "managed by terraform"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["8080"]
+  }
+  # source_tags = [""]
+  # target_tags = ["${var.mytags["system"]}"]
+}
+
 # instances
 resource "google_compute_instance" "node1" {
   name         = "node1"

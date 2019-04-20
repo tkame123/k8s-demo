@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: k8s-demo
-          image: gcr.io/${PROJECT_NAME}/github.com/tkame123/k8s-demo:${COMMIT_SHA}
+          image: xxx
           ports:
             - containerPort: 3000

@@ -16,6 +16,9 @@ spec:
     spec:
       containers:
         - name: k8s-demo
-          image: xxx
+#          image: xxx
+#          ports:
+#            - containerPort: 3000
+          image: nginx:1.12
           ports:
-            - containerPort: 3000
+            - containerPort: 80

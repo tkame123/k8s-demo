@@ -14,7 +14,7 @@ spec:
         app: k8s-demo-statefulset
     spec:
       containers:
-        - name: k8s-demo-statefulset
+        - name: www
           image: nginx:1.12
           ports:
             - containerPort: 80

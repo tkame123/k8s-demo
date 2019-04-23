@@ -15,7 +15,7 @@ spec:
         app: k8s-demo-deploy
     spec:
       containers:
-        - name: k8s-demo-deploy
+        - name: www
 #          image: xxx
 #          ports:
 #            - containerPort: 3000

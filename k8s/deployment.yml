@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: k8s-demo
+  name: k8s-demo-deploy
   labels:
-    app: k8s-demo
+    app: k8s-demo-deploy
 spec:
   replicas: 3 # レプリケーションの増減数
   selector:
     matchLabels:
-      app: k8s-demo
+      app: k8s-demo-deploy
   template:
     metadata:
       labels:
-        app: k8s-demo
+        app: k8s-demo-deploy
     spec:
       containers:
-        - name: k8s-demo
+        - name: k8s-demo-deploy
 #          image: xxx
 #          ports:
 #            - containerPort: 3000

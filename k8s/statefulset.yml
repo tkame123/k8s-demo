@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: k8s-demo-statefulset
+spec:
+  serviceName: k8s-demo-statefulset
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-demo-statefulset
+  template:
+    metadata:
+      labels:
+        app: k8s-demo-statefulset
+    spec:
+      containers:
+        - name: k8s-demo-statefulset
+          image: nginx:1.12
+          ports:
+            - containerPort: 80
+          volumeMounts:
+          - name: www
+            mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+    - metadata:
+        name: www
+      spec:
+        accessModes:
+        - ReadWriteMany # ReadWriteOnce
+        resources:
+          requests:
+            storage: 1G

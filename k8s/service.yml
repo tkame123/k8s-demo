@@ -4,13 +4,14 @@ metadata:
   name: k8s-demo-service
   namespace: default
   labels:
-    app: k8s-demo
+    app: k8s-demo-service
 spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 3000
+      targetPort: 80
+      # targetPort: 3000
   selector:
-    app: k8s-demo
+    app: k8s-demo-deploy
   type: LoadBalancer
   loadBalancerIP: ""

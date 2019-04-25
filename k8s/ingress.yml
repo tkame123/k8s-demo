@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: k8s-demo-ingress
+spec:
+  rules:
+    - host: k8s-demo.tkame123.net
+      http:
+        paths:
+          - path: /path1/*
+            backend:
+              serviceName: k8s-demo-ingress-svc-1
+              servicePort: 8888
+          - path: /path2/*
+            backend:
+              serviceName: k8s-demo-ingress-svc-2
+              servicePort: 8888
+  backend:
+    serviceName: k8s-demo-ingress-svc-default
+    servicePort: 8888
+  tls:
+    - hosts:
+        - k8s-demo.tkame123.net
+      secretName: tls-k8s-demo

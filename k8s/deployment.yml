@@ -5,7 +5,7 @@ metadata:
   labels:
     app: k8s-demo-deploy
 spec:
-  replicas: 5 # レプリケーションの増減数
+  replicas: 3 # レプリケーションの増減数
   selector:
     matchLabels:
       app: k8s-demo-deploy
@@ -22,3 +22,21 @@ spec:
           image: nginx:1.12
           ports:
             - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /index.html
+              port: 80
+              scheme: HTTP
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 1
+            initialDelaySeconds: 3
+            periodSeconds: 1
+          readinessProbe:
+            exec:
+              command: ["ls", "/usr/share/nginx/html/50x.html"]
+            timeoutSeconds: 1
+            successThreshold: 2
+            failureThreshold: 1
+            initialDelaySeconds: 5
+            periodSeconds: 3

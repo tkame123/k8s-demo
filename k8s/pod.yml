@@ -3,6 +3,7 @@ kind: Pod
 metadata:
   name: k8s-demo-pod
 spec:
+  serviceAccountName: k8s-demo-serviceaccount
   containers:
     - name: nginx-container
       image: nginx:1.12

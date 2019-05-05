@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: k8s-demo-clusterrole
+rules:
+  - apiGroups:
+    - apps
+    - extentions
+    resources:
+    - replicasets
+    - deployments
+    verbs:
+    - get
+    - list
+    - watch
+  - nonResourceURLs:
+    - /healthz
+    - /healthz/*
+    - /version
+    verbs:
+      - get
